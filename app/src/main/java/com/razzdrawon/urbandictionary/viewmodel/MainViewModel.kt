@@ -3,18 +3,26 @@ package com.razzdrawon.urbandictionary.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.razzdrawon.urbandictionary.api.DefinitionsService
+import com.razzdrawon.urbandictionary.di.DaggerApiComponent
 import com.razzdrawon.urbandictionary.model.Definition
 import com.razzdrawon.urbandictionary.model.UrbanDictionaryResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainViewModel : ViewModel() {
-    private val definitionsService = DefinitionsService()
+
+    @Inject
+    lateinit var definitionsService: DefinitionsService
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
+
     private val disposable = CompositeDisposable()
 
-    val search = MutableLiveData<String>()
     val definitions = MutableLiveData<ArrayList<Definition>>()
     val definitionsError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
