@@ -10,7 +10,7 @@ class DefinitionsService {
     @Inject
     lateinit var api: DefinitionsApi
 
-    init{
+    init {
         DaggerApiComponent.create().inject(this)
     }
 

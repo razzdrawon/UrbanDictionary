@@ -1,12 +1,12 @@
 package com.razzdrawon.urbandictionary.view
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.razzdrawon.urbandictionary.R
@@ -53,13 +53,13 @@ class MainFragment : Fragment() {
         })
         viewModel.definitionsError.observe(this, Observer { isError ->
             isError?.let {
-                error_view.visibility = if(it) View.VISIBLE else View.GONE
+                error_view.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
         viewModel.loading.observe(this, Observer { isLoading ->
             isLoading?.let {
-                loading_view.visibility = if(it) View.VISIBLE else View.GONE
-                if(it) {
+                loading_view.visibility = if (it) View.VISIBLE else View.GONE
+                if (it) {
                     error_view.visibility = View.GONE
                     definitionList.visibility = View.GONE
                 }
@@ -74,10 +74,7 @@ class MainFragment : Fragment() {
         with(search_view) {
 
             setOnSearchConfirmedListener { searchView, query ->
-                // Handle a search confirmation. This is the place where you'd
-                // want to perform a search against your data provider.
                 viewModel.refresh(query)
-
             }
 
             setSuggestionsDisabled(false)
@@ -96,8 +93,7 @@ class MainFragment : Fragment() {
 
             showRightButton()
             setRightButtonDrawable(R.drawable.sort)
-
-            setVoiceInputButtonEnabled(false)
+            isVoiceInputButtonEnabled = false
         }
     }
 

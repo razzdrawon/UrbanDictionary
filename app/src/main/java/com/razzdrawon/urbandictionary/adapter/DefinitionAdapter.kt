@@ -10,7 +10,8 @@ import com.razzdrawon.urbandictionary.R
 import com.razzdrawon.urbandictionary.model.Definition
 import kotlinx.android.synthetic.main.definition_row.view.*
 
-class DefinitionAdapter(private var definitions: ArrayList<Definition>) : ListAdapter<Definition, DefinitionAdapter.ViewHolder>(DefinitionDiffUtil) {
+class DefinitionAdapter(private var definitions: ArrayList<Definition>) :
+    ListAdapter<Definition, DefinitionAdapter.ViewHolder>(DefinitionDiffUtil) {
 
     fun updateDefinitions(newDefinitions: ArrayList<Definition>) {
         definitions.clear()
@@ -19,7 +20,8 @@ class DefinitionAdapter(private var definitions: ArrayList<Definition>) : ListAd
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.definition_row, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.definition_row, parent, false)
         return ViewHolder(view)
     }
 
@@ -29,7 +31,7 @@ class DefinitionAdapter(private var definitions: ArrayList<Definition>) : ListAd
         holder.bindItems(definitions[position])
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(definition: Definition) {
             itemView.word.text = definition.word

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,11 +9,11 @@
         android:id="@+id/word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/word"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/term"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,25 +30,27 @@
         tools:text="Defintion" />
 
     <TextView
+        android:id="@+id/example"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/example"
-        android:id="@+id/example"
-        tools:text="example"
         android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@+id/definition"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/definition"
+        tools:text="example" />
 
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/author"
+        android:layout_marginTop="8dp"
         android:gravity="end"
-        tools:text="author on date" app:layout_constraintTop_toBottomOf="@+id/example"
-        android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="@string/author"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/example"
+        tools:text="author on date" />
 
 
     <TextView

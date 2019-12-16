@@ -14,7 +14,7 @@ class ApiModule {
     private val BASE_URL = "https://mashape-community-urban-dictionary.p.rapidapi.com/"
 
     @Provides
-    fun provideDefinitionsApi(): DefinitionsApi{
+    fun provideDefinitionsApi(): DefinitionsApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

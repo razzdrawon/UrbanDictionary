@@ -1,9 +1,8 @@
 package com.razzdrawon.urbandictionary.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.razzdrawon.urbandictionary.R
-import com.razzdrawon.urbandictionary.view.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

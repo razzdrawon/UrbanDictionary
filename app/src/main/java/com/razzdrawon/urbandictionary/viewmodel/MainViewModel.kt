@@ -35,7 +35,6 @@ class MainViewModel : ViewModel() {
             SortOptions.THUMBS_DOWN -> response.sortedByDescending { it.thumbs_down }
             SortOptions.DEFAULT -> response
         }
-
     }
 
     internal var selectedSort: SortOptions = SortOptions.DEFAULT
@@ -51,7 +50,7 @@ class MainViewModel : ViewModel() {
             definitionsService.getDefinitions(word)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<UrbanDictionaryResponse>() {
+                .subscribeWith(object : DisposableSingleObserver<UrbanDictionaryResponse>() {
                     override fun onSuccess(res: UrbanDictionaryResponse) {
                         definitions.value = res.list
                         definitionsError.value = false
@@ -62,8 +61,8 @@ class MainViewModel : ViewModel() {
                         definitionsError.value = true
                         loading.value = false
                     }
-
-                })
+                }
+                )
         )
     }
 
