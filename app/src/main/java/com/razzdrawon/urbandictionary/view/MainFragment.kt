@@ -1,21 +1,16 @@
-package com.razzdrawon.urbandictionary.ui.main
+package com.razzdrawon.urbandictionary.view
 
-import android.app.Activity
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.paulrybitskyi.persistentsearchview.utils.VoiceRecognitionDelegate
 import com.razzdrawon.urbandictionary.R
 import com.razzdrawon.urbandictionary.adapter.DefinitionAdapter
-import com.razzdrawon.urbandictionary.model.Definition
+import com.razzdrawon.urbandictionary.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {

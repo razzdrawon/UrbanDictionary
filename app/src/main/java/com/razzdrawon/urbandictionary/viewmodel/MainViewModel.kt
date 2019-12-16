@@ -1,4 +1,4 @@
-package com.razzdrawon.urbandictionary.ui.main
+package com.razzdrawon.urbandictionary.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
