@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/thumbs_up"
-        android:layout_width="30dp"
+        android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:drawablePadding="8dp"
@@ -67,7 +67,7 @@
 
     <TextView
         android:id="@+id/thumbs_down"
-        android:layout_width="30dp"
+        android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:drawablePadding="8dp"

@@ -1,13 +1,18 @@
 package com.razzdrawon.urbandictionary.ui.main
 
+import android.app.Activity
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.paulrybitskyi.persistentsearchview.utils.VoiceRecognitionDelegate
 import com.razzdrawon.urbandictionary.R
 import com.razzdrawon.urbandictionary.adapter.DefinitionAdapter
 import com.razzdrawon.urbandictionary.model.Definition
@@ -32,7 +37,6 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.refresh()
 
         definitionList.apply {
             layoutManager = LinearLayoutManager(context)
@@ -43,6 +47,8 @@ class MainFragment : Fragment() {
     }
 
     fun obseveViewModel() {
+
+
         viewModel.definitions.observe(this, Observer { definitions ->
             definitions?.let {
                 definitionList.visibility = View.VISIBLE
@@ -63,6 +69,23 @@ class MainFragment : Fragment() {
                 }
             }
         })
+
+        with(search_view) {
+
+            setOnSearchConfirmedListener { searchView, query ->
+                // Handle a search confirmation. This is the place where you'd
+                // want to perform a search against your data provider.
+                viewModel.refresh(query)
+
+            }
+
+            setSuggestionsDisabled(false)
+
+            showRightButton()
+            setRightButtonDrawable(R.drawable.sort)
+
+            setVoiceInputButtonEnabled(false)
+        }
     }
 
 }

@@ -7,14 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
-    <SearchView
+    <com.paulrybitskyi.persistentsearchview.PersistentSearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingTop="4dp"
+        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
+        android:paddingRight="4dp"
+        android:paddingEnd="4dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/definitionList"
@@ -43,6 +44,7 @@
         android:id="@+id/loading_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

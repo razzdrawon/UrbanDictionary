@@ -14,18 +14,19 @@ class MainViewModel : ViewModel() {
     private val definitionsService = DefinitionsService()
     private val disposable = CompositeDisposable()
 
+    val search = MutableLiveData<String>()
     val definitions = MutableLiveData<ArrayList<Definition>>()
     val definitionsError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-    fun refresh() {
-        fetchCountries()
+    fun refresh(word: String) {
+        fetchCountries(word)
     }
 
-    private fun fetchCountries() {
+    private fun fetchCountries(word: String) {
         loading.value = true
         disposable.add(
-            definitionsService.getDefinitions("hello")
+            definitionsService.getDefinitions(word)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object: DisposableSingleObserver<UrbanDictionaryResponse>() {
