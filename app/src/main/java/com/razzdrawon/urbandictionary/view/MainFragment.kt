@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.razzdrawon.urbandictionary.R
 import com.razzdrawon.urbandictionary.adapter.DefinitionAdapter
 import com.razzdrawon.urbandictionary.viewmodel.MainViewModel
@@ -65,6 +66,11 @@ class MainFragment : Fragment() {
             }
         })
 
+        viewModel.contentState.observe(this, Observer {
+            (definitionList.adapter as DefinitionAdapter).submitList(it)
+            definitionList.requestFocus()
+        })
+
         with(search_view) {
 
             setOnSearchConfirmedListener { searchView, query ->
@@ -75,6 +81,18 @@ class MainFragment : Fragment() {
             }
 
             setSuggestionsDisabled(false)
+
+            setOnRightBtnClickListener {
+                MaterialAlertDialogBuilder(context)
+                    .setCancelable(true)
+                    .setSingleChoiceItems(
+                        arrayOf("Thumbs up", "Thumbs Down", "None"),
+                        viewModel.selectedSort.ordinal
+                    ) { dialog, index ->
+                        dialog.dismiss()
+                        viewModel.sortWith(index)
+                    }.show()
+            }
 
             showRightButton()
             setRightButtonDrawable(R.drawable.sort)

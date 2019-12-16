@@ -1,6 +1,8 @@
 package com.razzdrawon.urbandictionary.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.razzdrawon.urbandictionary.api.DefinitionsService
 import com.razzdrawon.urbandictionary.di.DaggerApiComponent
@@ -26,6 +28,18 @@ class MainViewModel : ViewModel() {
     val definitions = MutableLiveData<ArrayList<Definition>>()
     val definitionsError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
+
+    val contentState: LiveData<List<Definition>> = Transformations.map(definitions) { response ->
+        when (selectedSort) {
+            SortOptions.THUMBS_UP -> response.sortedByDescending { it.thumbs_up }
+            SortOptions.THUMBS_DOWN -> response.sortedByDescending { it.thumbs_down }
+            SortOptions.DEFAULT -> response
+        }
+
+    }
+
+    internal var selectedSort: SortOptions = SortOptions.DEFAULT
+        private set
 
     fun refresh(word: String) {
         fetchCountries(word)
@@ -56,5 +70,19 @@ class MainViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
+    }
+
+    fun sortWith(selectedIndex: Int) {
+        val newSort = SortOptions.values()[selectedIndex]
+        if (newSort != selectedSort && definitions.value != null) {
+            loading.value = true
+            selectedSort = newSort
+            definitions.value = definitions.value
+            loading.value = false
+        }
+    }
+
+    enum class SortOptions {
+        THUMBS_UP, THUMBS_DOWN, DEFAULT
     }
 }
