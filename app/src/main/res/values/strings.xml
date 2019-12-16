@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">UrbanDictionary</string>
+    <string name="error_string">An error occurred loading data.</string>
+    <string name="word">Word</string>
+    <string name="definition">Definition</string>
+    <string name="example">Example</string>
+    <string name="author">Author</string>
+    <string name="image_thumbs_up">image thumbs up</string>
+    <string name="image_thumbs_down">image thumbs down</string>
 </resources>
