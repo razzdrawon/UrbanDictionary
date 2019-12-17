@@ -28,7 +28,8 @@ android {
 def retrofitVersion = '2.3.0'
 def rxJavaVersion = '2.0.1'
 def searchVersion = '1.1.1'
-def daggerVersion = '2.13'
+def daggerVersion = '2.15'
+def mockitoVersion = '2.11.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -47,14 +48,18 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
     implementation "com.paulrybitskyi.persistentsearchview:persistentsearchview:$searchVersion"
 
-    implementation 'com.google.dagger:dagger:2.15'
-    implementation 'com.google.dagger:dagger-android-support:2.15'
-    implementation 'com.google.dagger:dagger-android:2.15'
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
 
-    kapt 'com.google.dagger:dagger-compiler:2.15'
-    kapt 'com.google.dagger:dagger-android-processor:2.15'
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     implementation 'com.google.android.material:material:1.1.0-alpha09'
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
