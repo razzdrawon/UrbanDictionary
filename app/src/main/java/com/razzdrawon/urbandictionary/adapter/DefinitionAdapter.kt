@@ -38,14 +38,14 @@ class DefinitionAdapter(private var definitions: ArrayList<Definition>) :
             itemView.definition.text = definition.definition
             itemView.example.text = definition.example
             itemView.author.text = definition.author
-            itemView.thumbs_up.text = definition.thumbs_up.toString()
-            itemView.thumbs_down.text = definition.thumbs_down.toString()
+            itemView.thumbs_up.text = definition.thumbsUp.toString()
+            itemView.thumbs_down.text = definition.thumbsDown.toString()
         }
     }
 
     object DefinitionDiffUtil : DiffUtil.ItemCallback<Definition>() {
         override fun areItemsTheSame(oldItem: Definition, newItem: Definition) =
-            oldItem.defid == newItem.defid
+            oldItem.defId == newItem.defId
 
         override fun areContentsTheSame(oldItem: Definition, newItem: Definition) =
             oldItem == newItem

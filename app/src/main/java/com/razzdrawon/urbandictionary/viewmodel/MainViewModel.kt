@@ -31,8 +31,8 @@ class MainViewModel : ViewModel() {
 
     val contentState: LiveData<List<Definition>> = Transformations.map(definitions) { response ->
         when (selectedSort) {
-            SortOptions.THUMBS_UP -> response.sortedByDescending { it.thumbs_up }
-            SortOptions.THUMBS_DOWN -> response.sortedByDescending { it.thumbs_down }
+            SortOptions.THUMBS_UP -> response.sortedByDescending { it.thumbsUp }
+            SortOptions.THUMBS_DOWN -> response.sortedByDescending { it.thumbsDown }
             SortOptions.DEFAULT -> response
         }
     }
