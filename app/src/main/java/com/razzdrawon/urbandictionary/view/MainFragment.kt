@@ -77,15 +77,13 @@ class MainFragment : Fragment() {
         with(search_view) {
 
             setOnSearchConfirmedListener { searchView, query ->
-                val inputManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputManager.hideSoftInputFromWindow(
-                    activity!!.currentFocus!!.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS
-                )
+                hideKeyBoard(searchView)
                 viewModel.refresh(query)
             }
 
-            setSuggestionsDisabled(false)
+            setOnLeftBtnClickListener {
+                hideKeyBoard(search_view)
+            }
 
             setOnRightBtnClickListener {
                 MaterialAlertDialogBuilder(context)
@@ -100,9 +98,20 @@ class MainFragment : Fragment() {
             }
 
             showRightButton()
+            setSuggestionsDisabled(false)
             setRightButtonDrawable(R.drawable.sort)
             isVoiceInputButtonEnabled = false
+            setDimBackground(false)
         }
+    }
+
+    fun hideKeyBoard(view: View) {
+        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(
+            activity?.currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
+        view.clearFocus()
     }
 
 }
