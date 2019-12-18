@@ -10,14 +10,8 @@ import com.razzdrawon.urbandictionary.R
 import com.razzdrawon.urbandictionary.model.Definition
 import kotlinx.android.synthetic.main.definition_row.view.*
 
-class DefinitionAdapter(private var definitions: ArrayList<Definition>) :
+class DefinitionAdapter :
     ListAdapter<Definition, DefinitionAdapter.ViewHolder>(DefinitionDiffUtil) {
-
-    fun updateDefinitions(newDefinitions: ArrayList<Definition>) {
-        definitions.clear()
-        definitions.addAll(newDefinitions)
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -25,10 +19,8 @@ class DefinitionAdapter(private var definitions: ArrayList<Definition>) :
         return ViewHolder(view)
     }
 
-    override fun getItemCount() = definitions.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(definitions[position])
+        holder.bindItems(getItem(position))
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

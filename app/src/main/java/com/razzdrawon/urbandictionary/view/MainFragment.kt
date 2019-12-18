@@ -24,7 +24,7 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
-    private var definitionsAdapter = DefinitionAdapter(arrayListOf())
+    private var definitionsAdapter = DefinitionAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +51,8 @@ class MainFragment : Fragment() {
         viewModel.definitions.observe(this, Observer { definitions ->
             definitions?.let {
                 definitionList.visibility = View.VISIBLE
-                definitionsAdapter.updateDefinitions(it)
+                (definitionList.adapter as DefinitionAdapter).submitList(it)
+                definitionList.requestFocus()
             }
         })
         viewModel.definitionsError.observe(this, Observer { isError ->
@@ -106,7 +107,8 @@ class MainFragment : Fragment() {
     }
 
     fun hideKeyBoard(view: View) {
-        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputManager =
+            activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(
             activity?.currentFocus?.windowToken,
             InputMethodManager.HIDE_NOT_ALWAYS
